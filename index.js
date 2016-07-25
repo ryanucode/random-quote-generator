@@ -3,10 +3,10 @@ I didn't like the idea of having "random colors" pop up for each quote. I liked 
 */
 const quotes = [
   {
-    words: '"I could write a book called the things ho\'s say"',
+    words: '"Love yourself, girl, or nobody will"',
     bgColor: "red",
     artist: "Jermaine Cole",
-    citation: "She Knows",
+    citation: "Crooked Smile",
     year: "2013",
     tag: "East Coast" //These tags will organize Hip-hop artists by geography
   },
@@ -54,6 +54,7 @@ function displayQuote(quote) {
           <span>Song - ${quote.citation || "?"}</span><br>
           <span>Released - ${quote.year || "?"}</span>`
 }
+
 function removeQuote(quote, quotesArray){
   const quoteIndex = quotesArray.indexOf(quote)
   quotesArray.splice(quoteIndex, 1)
@@ -64,7 +65,8 @@ function replaceQuote(){
   displayQuote(quote)
   removeQuote(quote, tempQuotes)
 }
-
-//Given the scope of this project, I didn't put this in a function nor did I inlucde a clear interval component
+/*
+Given the scope of this project, I didn't put this in a function nor did I inlucde a clear interval component
+*/
 replaceQuote()
 window.setInterval(replaceQuote, 2000)
