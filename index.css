@@ -1,0 +1,29 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+/* Flex-box is aligned with the CSS3 spec and is the best way to create a responsive layout*/
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+/*Not sure why the padding isn't being applied to the span elements */
+p,
+span {
+  font-family: 'Josefin Slab', serif;
+  font-size: 36px;
+  padding: 5%;
+}
+.quote-box {
+  width: 50%;
+  align-self: center;
+  background-color: #FFF;
+  border: black solid;
+  outline: 5px brown solid;
+}
+.artist {
+  text-align: right;
+}
