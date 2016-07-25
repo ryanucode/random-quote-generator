@@ -33,7 +33,7 @@ const quotes = [
     tag: "West Coast"
   }
 ];
-var tempQuotes = quotes
+var tempQuotes = quotes.slice(0)
 //Cache the quoteBox so that we can inject markup into it
 const quoteBox = document.getElementsByClassName('quote-box')[0]
 //Cache the body so we can adjust it's background-color per each object
@@ -43,6 +43,10 @@ function randomNum(min, max){
   return Math.floor((Math.random() * (max - min + 1)) + min)
 }
 
+function resetTempQuotes(){
+  if(tempQuotes.length === 0)
+    tempQuotes = quotes.slice(0)
+}
 function getRandomQuote(quotes) {
     return quotes[randomNum(0, quotes.length - 1)]
 }
@@ -61,6 +65,7 @@ function removeQuote(quote, quotesArray){
 }
 
 function replaceQuote(){
+  resetTempQuotes()
   const quote = getRandomQuote(tempQuotes)
   displayQuote(quote)
   removeQuote(quote, tempQuotes)
