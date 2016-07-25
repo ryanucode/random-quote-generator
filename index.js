@@ -53,7 +53,6 @@ function getRandomQuote(quotes) {
 //I used a template string to add the elements together as opposed to the method suggested in the project steps--this is more aligned with ES2015 syntax and I think it's more elegant in genral.
 function printQuote() {
   const quote = getRandomQuote(quotes)
-  //return document.write(quote.words)
   body.style.backgroundColor = quote.bgColor
   return `<p>${quote.words}</p>
           <p class="artist">- ${quote.artist}</p>
