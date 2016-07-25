@@ -8,7 +8,6 @@ const quotes = [
     artist: "Jermaine Cole",
     citation: "She Knows",
     year: "2013",
-    pullCount: 0,
     tag: "East Coast" //These tags will organize Hip-hop artists by geography
   },
   {
@@ -17,7 +16,6 @@ const quotes = [
     artist: "Chance the Rapper",
     citation: "Juke Jam",
     year: "2016",
-    pullCount: 0,
     tag: "Chi-town"
   },
   {
@@ -25,7 +23,6 @@ const quotes = [
     bgColor: "yellow",
     artist: "Kanye West",
     year: "2011",
-    pullCount: 0,
     tag: "Chi-town"    
   },
   {
@@ -33,10 +30,10 @@ const quotes = [
     bgColor: "black",
     artist: "Kendrick Lamar",
     citation: "Poetic Justice",
-    pullCount: 0,
     tag: "West Coast"
   }
 ];
+var tempQuotes = quotes
 //Cache the quoteBox so that we can inject markup into it
 const quoteBox = document.getElementsByClassName('quote-box')[0]
 //Cache the body so we can adjust it's background-color per each object
@@ -46,44 +43,28 @@ function randomNum(min, max){
   return Math.floor((Math.random() * (max - min + 1)) + min)
 }
 
-
 function getRandomQuote(quotes) {
     return quotes[randomNum(0, quotes.length - 1)]
 }
 //I used a template string to add the elements together as opposed to the method suggested in the project steps--this is more aligned with ES2015 syntax and I think it's more elegant in genral.
-function printQuote() {
-  const quote = getRandomQuote(quotes)
+function displayQuote(quote) {
   body.style.backgroundColor = quote.bgColor
-  return `<p>${quote.words}</p>
+  quoteBox.innerHTML = `<p>${quote.words}</p>
           <p class="artist">- ${quote.artist}</p>
           <span>Song - ${quote.citation || "?"}</span><br>
           <span>Released - ${quote.year || "?"}</span>`
 }
-/* Should fillQuote and printQuote be two different functions or nah? */
-function fillQuote(){
-  return quoteBox.innerHTML = printQuote()
+function removeQuote(quote, quotesArray){
+  const quoteIndex = quotesArray.indexOf(quote)
+  quotesArray.splice(quoteIndex, 1)
 }
-/*
-Given the scope of this project, I didn't put this in a function nor did I inlucde a clear interval component
-*/
-fillQuote()
-window.setInterval(fillQuote, 8000)
 
-
-// Pseudo Code from randomQuotes function
-function randomQuotes(quotes){
-  const tempQuotes = quotes
-    function removeQuotes(){
-      while(tempQuotes.length > 0){
-        const quote = getRandomQuote(tempQuotes)
-        body.style.backgroundColor = quote.bgColor
-        quoteBox.innerHTML = `<p>${quote.words}</p>
-              <p class="artist">- ${quote.artist}</p>
-              <span>Song - ${quote.citation || "?"}</span><br>
-              <span>Released - ${quote.year || "?"}</span>`
-        const quoteIndex = tempQuotes.indexOf(quote)
-        tempQuotes.splice(quoteIndex, quoteIndex + 1)
-    }
-  }
+function replaceQuote(){
+  const quote = getRandomQuote(tempQuotes)
+  displayQuote(quote)
+  removeQuote(quote, tempQuotes)
 }
-//
+
+//Given the scope of this project, I didn't put this in a function nor did I inlucde a clear interval component
+replaceQuote()
+window.setInterval(replaceQuote, 2000)
